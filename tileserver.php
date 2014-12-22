@@ -382,7 +382,8 @@ class Server {
         $this->DBconnect($tileset . '.mbtiles');
         $result = $this->db->query('SELECT grid FROM grids WHERE tile_column = ' . $x . ' AND tile_row = ' . $y . ' AND zoom_level = ' . $z);
         if (!isset($result) || $result === FALSE) {
-          header('Access-Control-Allow-Origin: *');
+          #disabled - Adk
+          #header('Access-Control-Allow-Origin: *');
           echo '{}';
           die;
         } else {
@@ -398,7 +399,8 @@ class Server {
             $grid .= '"' . $r['key'] . '":' . $r['json'] . ',';
           }
           $grid = rtrim($grid, ',') . '}}';
-          header('Access-Control-Allow-Origin: *');
+          #disabled - Adk
+          #header('Access-Control-Allow-Origin: *');
 
           if (isset($_GET['callback']) && !empty($_GET['callback'])) {
             header("Content-Type:text/javascript charset=utf-8");
