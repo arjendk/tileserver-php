@@ -389,6 +389,13 @@ class Server {
         } else {
           $data = $result->fetchColumn();
 
+          //Check data == false to prevent misformed grid data - AdK 2014-12-20
+          if ($data !== false) {
+            $grid = gzuncompress($data);
+            $grid = substr(trim($grid), 0, -1);
+          } else {
+            $grid = '{"grid":[""], "keys":[""]';
+          }
           $grid = gzuncompress($data);
           $grid = substr(trim($grid), 0, -1);
 
